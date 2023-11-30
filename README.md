@@ -6,9 +6,10 @@ Pada service ini, akan dibangun sample CRUD dari entitas "SISWA" walaupun belum 
 ## Sistem Requirements
 1. GO 1.20
 2. MariaDB 10.4.27
-
+3. Gorm
 
 ## Database Preparation
+Karena dalam pembangunan aplikasi ini menggunakan ORM, maka hanya di butuhkan database untuk bisa migrasi table yang dibuat didalam aplikasi
 1. Buat database dengan nama yang ingin ditentukan
 2. Buka file .env dan sesuaikan isi dari env tersebut dan isi nama database sesuai nama yang dibuat
 
