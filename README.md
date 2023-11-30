@@ -23,5 +23,6 @@ Pada service ini, akan dibangun sample CRUD dari entitas "SISWA" walaupun belum 
 
 ## Eksekusi service
 ``` bash
-go run ../cmd/main.go
+go run cmd/main.go
+
 ```
