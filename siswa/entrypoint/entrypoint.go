@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/nashrull/averin/shared/config"
 	handler "github.com/nashrull/averin/siswa/consumer/http"
 	mysql "github.com/nashrull/averin/siswa/repository/mysql"
 	"github.com/nashrull/averin/siswa/usecase"
@@ -12,9 +13,10 @@ import (
 func RegisterSiswaModule(
 	log *log.Logger,
 	e *gin.Engine,
+	cfg config.Config,
 ) error {
 
-	siswarepo, err := mysql.NewMysqlRepository(log)
+	siswarepo, err := mysql.NewMysqlRepository(log, cfg)
 	if err != nil {
 		return err
 	}

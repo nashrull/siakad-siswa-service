@@ -5,14 +5,16 @@ import (
 	"log"
 	"strconv"
 
+	"github.com/nashrull/averin/shared/config"
 	siswa "github.com/nashrull/averin/siswa"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 type mysqlRepository struct {
-	db  *gorm.DB
-	log *log.Logger
+	db     *gorm.DB
+	log    *log.Logger
+	config config.Config
 }
 
 // Create implements siswa.UserRepository.
@@ -54,11 +56,11 @@ func (r *mysqlRepository) Save(ctx context.Context, id string, payload siswa.Sis
 	return result.Error
 }
 
-func NewMysqlRepository(log *log.Logger) (response siswa.SiswaRepository, err error) {
+func NewMysqlRepository(log *log.Logger, config config.Config) (response siswa.SiswaRepository, err error) {
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		// Replace with your MySQL configuration
-		DriverName: "mysql",
-		DSN:        "root:@tcp(localhost:3306)/averin?charset=utf8&parseTime=True&loc=Local",
+		DriverName: config.DB.Driver,
+		DSN:        config.DB.CreateConnection(),
 	}), &gorm.Config{})
 	if err != nil {
 		return nil, err
